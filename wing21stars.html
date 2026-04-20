@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WING21 STARS – Tour Operator</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@200;300;400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #122240;
+    --navy-light: #1a3460;
+    --gold: #c9a84c;
+    --gold-light: #e2c97e;
+    --gold-pale: #f5e9c8;
+    --cream: #faf6ef;
+    --text-light: #d4c9b0;
+    --text-mid: #8a7f6a;
+    --white: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Josefin Sans', sans-serif;
+    background: var(--navy);
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.4rem 4rem;
+    background: linear-gradient(to bottom, rgba(10,22,40,0.98), rgba(10,22,40,0));
+    transition: background 0.4s;
+  }
+  nav.scrolled { background: rgba(10,22,40,0.97); border-bottom: 1px solid rgba(201,168,76,0.2); }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 600; letter-spacing: 0.15em;
+    color: var(--gold); text-decoration: none;
+  }
+  .nav-logo span { color: var(--cream); }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--text-light); text-decoration: none; transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    position: relative; overflow: hidden;
+    padding: 8rem 2rem 4rem;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(26,52,96,0.6) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,168,76,0.08) 0%, transparent 60%),
+      linear-gradient(160deg, #0a1628 0%, #0e1f3a 40%, #0a1628 100%);
+  }
+
+  .star-field {
+    position: absolute; inset: 0; z-index: 1;
+    background-image:
+      radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 60%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 40% 20%, rgba(201,168,76,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 55% 75%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 70% 35%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 82% 55%, rgba(201,168,76,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 92% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 15% 85%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 60% 45%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 35% 90%, rgba(201,168,76,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 78% 88%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 5% 45%, rgba(255,255,255,0.3) 0%, transparent 100%);
+  }
+
+  .hero-ornament {
+    position: relative; z-index: 2;
+    width: 60px; height: 1px; background: var(--gold);
+    margin: 0 auto 2rem; opacity: 0.7;
+  }
+  .hero-ornament::before, .hero-ornament::after {
+    content: ''; position: absolute; top: 50%; transform: translateY(-50%);
+    width: 5px; height: 5px; border: 1px solid var(--gold); border-radius: 50%; background: var(--gold);
+  }
+  .hero-ornament::before { left: -8px; }
+  .hero-ornament::after { right: -8px; }
+
+  .hero-tag {
+    position: relative; z-index: 2;
+    font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.2rem; opacity: 0.9;
+  }
+
+  .hero-title {
+    position: relative; z-index: 2;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 300; line-height: 1.05; letter-spacing: 0.06em;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+    animation: fadeUp 1.2s ease both;
+  }
+  .hero-title .star { color: var(--gold); font-weight: 600; }
+
+  .hero-subtitle {
+    position: relative; z-index: 2;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    font-weight: 300; font-style: italic;
+    color: var(--gold-light); letter-spacing: 0.04em;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 1.2s 0.2s ease both;
+  }
+
+  .hero-divider {
+    position: relative; z-index: 2;
+    display: flex; align-items: center; gap: 1rem;
+    margin: 0 auto 3rem; width: 320px;
+    animation: fadeUp 1.2s 0.3s ease both;
+  }
+  .hero-divider .line { flex: 1; height: 1px; background: rgba(201,168,76,0.4); }
+  .hero-divider .diamond {
+    width: 8px; height: 8px; border: 1px solid var(--gold);
+    transform: rotate(45deg); opacity: 0.8;
+  }
+
+  .hero-services {
+    position: relative; z-index: 2;
+    display: flex; flex-wrap: wrap; gap: 1rem 2.5rem; justify-content: center;
+    margin-bottom: 3.5rem;
+    animation: fadeUp 1.2s 0.4s ease both;
+  }
+  .hero-services span {
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-light);
+  }
+  .hero-services .sep { color: var(--gold); opacity: 0.5; }
+
+  .hero-cta {
+    position: relative; z-index: 2;
+    display: inline-flex; gap: 1.2rem;
+    animation: fadeUp 1.2s 0.5s ease both;
+  }
+  .btn-primary {
+    padding: 0.85rem 2.5rem;
+    background: var(--gold); color: var(--navy);
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+    border: none; cursor: pointer; text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  .btn-outline {
+    padding: 0.85rem 2.5rem;
+    background: transparent; color: var(--gold);
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.7rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase;
+    border: 1px solid rgba(201,168,76,0.5); cursor: pointer; text-decoration: none;
+    transition: border-color 0.3s, color 0.3s, transform 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold-light); transform: translateY(-2px); }
+
+  .scroll-indicator {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+  }
+  .scroll-indicator span { font-size: 0.6rem; letter-spacing: 0.2em; color: var(--text-mid); text-transform: uppercase; }
+  .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent); animation: scrollDown 2s infinite; }
+  @keyframes scrollDown { 0%, 100% { opacity: 0; transform: scaleY(0); transform-origin: top; } 50% { opacity: 1; transform: scaleY(1); } }
+
+  /* ── SECTIONS COMMON ── */
+  section { padding: 6rem 4rem; }
+  .section-label {
+    font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;
+  }
+  .section-label::before { content: ''; width: 30px; height: 1px; background: var(--gold); }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; line-height: 1.2;
+    color: var(--white); margin-bottom: 1.5rem;
+  }
+  .section-title em { font-style: italic; color: var(--gold-light); }
+
+  /* ── ABOUT ── */
+  .about {
+    background: var(--navy-mid);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+  }
+  .about-text p {
+    font-size: 0.9rem; line-height: 1.9; color: var(--text-light);
+    margin-bottom: 1.2rem;
+  }
+  .about-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+  }
+  .stat-card {
+    border-left: 2px solid var(--gold); padding-left: 1.5rem;
+  }
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; font-weight: 300; color: var(--gold); line-height: 1;
+  }
+  .stat-desc { font-size: 0.65rem; letter-spacing: 0.1em; color: var(--text-mid); text-transform: uppercase; margin-top: 0.4rem; }
+
+  /* ── SERVICES ── */
+  .services { background: var(--navy); }
+  .services-header { text-align: center; margin-bottom: 4rem; }
+  .services-header .section-label { justify-content: center; }
+  .services-header .section-label::before { display: none; }
+
+  .services-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5px;
+    background: rgba(201,168,76,0.15);
+  }
+  .service-card {
+    background: var(--navy); padding: 3rem 2rem;
+    position: relative; overflow: hidden;
+    transition: background 0.4s;
+  }
+  .service-card::before {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2px; background: var(--gold);
+    transform: scaleX(0); transition: transform 0.4s; transform-origin: left;
+  }
+  .service-card:hover { background: var(--navy-mid); }
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-icon {
+    font-size: 2rem; margin-bottom: 1.5rem;
+    display: block; color: var(--gold); opacity: 0.7;
+  }
+  .service-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem; font-weight: 300; color: rgba(201,168,76,0.1);
+    position: absolute; top: 1.5rem; right: 1.5rem; line-height: 1;
+  }
+  .service-name {
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.8rem;
+  }
+  .service-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 400; color: var(--white); line-height: 1.3; margin-bottom: 1rem;
+  }
+  .service-desc {
+    font-size: 0.82rem; line-height: 1.8; color: var(--text-light);
+  }
+
+  /* ── GM SECTION ── */
+  .gm-section {
+    background: var(--navy-mid);
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 6rem; align-items: center;
+  }
+
+  .gm-photo-frame {
+    position: relative;
+  }
+  .gm-photo-outer {
+    position: relative;
+    width: 100%; padding-bottom: 120%;
+  }
+  .gm-photo-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy) 100%);
+    border: 1px solid rgba(201,168,76,0.3);
+  }
+  .gm-photo-placeholder {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 1rem;
+  }
+  .gm-avatar-ring {
+    width: 120px; height: 120px; border-radius: 50%;
+    border: 2px solid rgba(201,168,76,0.4);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .gm-avatar-ring::before {
+    content: ''; position: absolute; inset: 6px;
+    border-radius: 50%; border: 1px solid rgba(201,168,76,0.2);
+  }
+  .gm-avatar-initials {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem; font-weight: 300; color: var(--gold); letter-spacing: 0.1em;
+  }
+  .gm-photo-caption {
+    font-size: 0.6rem; letter-spacing: 0.2em; color: var(--text-mid); text-transform: uppercase;
+    text-align: center;
+  }
+  .gm-deco-line {
+    position: absolute;
+    top: -20px; left: -20px; width: 60px; height: 60px;
+    border-top: 1px solid rgba(201,168,76,0.4);
+    border-left: 1px solid rgba(201,168,76,0.4);
+  }
+  .gm-deco-line-br {
+    position: absolute;
+    bottom: -20px; right: -20px; width: 60px; height: 60px;
+    border-bottom: 1px solid rgba(201,168,76,0.4);
+    border-right: 1px solid rgba(201,168,76,0.4);
+  }
+
+  .gm-content {}
+  .gm-role {
+    font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.5rem;
+  }
+  .gm-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300;
+    color: var(--white); line-height: 1.1; margin-bottom: 0.4rem;
+  }
+  .gm-name-placeholder {
+    font-style: italic; color: var(--text-mid);
+  }
+  .gm-title-line {
+    width: 50px; height: 1px; background: var(--gold); margin: 1.2rem 0;
+  }
+  .gm-bio {
+    font-size: 0.88rem; line-height: 1.9; color: var(--text-light); margin-bottom: 1.2rem;
+  }
+  .gm-bio-placeholder {
+    font-style: italic; color: var(--text-mid); font-size: 0.82rem;
+    border-left: 2px solid rgba(201,168,76,0.3); padding-left: 1.2rem;
+  }
+  .gm-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; font-style: italic; font-weight: 300;
+    color: var(--gold-light); line-height: 1.6; margin: 2rem 0;
+    padding-left: 1.5rem;
+    border-left: 2px solid var(--gold);
+  }
+  .gm-credentials {
+    display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 2rem;
+  }
+  .gm-cred {
+    display: flex; flex-direction: column; gap: 0.2rem;
+  }
+  .gm-cred-label { font-size: 0.6rem; letter-spacing: 0.15em; color: var(--text-mid); text-transform: uppercase; }
+  .gm-cred-value { font-size: 0.82rem; color: var(--cream); }
+
+  /* ── CONTACT ── */
+  .contact {
+    background: var(--navy);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;
+  }
+  .contact-info p {
+    font-size: 0.85rem; line-height: 1.9; color: var(--text-light); margin-bottom: 2rem;
+  }
+  .contact-details { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .contact-item-label {
+    font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); min-width: 70px; padding-top: 0.15rem;
+  }
+  .contact-item-value { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+
+  .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-label { font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-mid); }
+  .form-input, .form-textarea {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.2);
+    padding: 0.85rem 1rem; color: var(--cream); font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.85rem; outline: none; transition: border-color 0.3s;
+    width: 100%;
+  }
+  .form-input:focus, .form-textarea:focus { border-color: rgba(201,168,76,0.6); }
+  .form-textarea { resize: vertical; min-height: 120px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #060f1c;
+    padding: 3rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid rgba(201,168,76,0.1);
+  }
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; color: var(--gold); letter-spacing: 0.15em;
+  }
+  .footer-brand span { color: var(--text-mid); }
+  .footer-copy { font-size: 0.65rem; letter-spacing: 0.08em; color: var(--text-mid); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 2rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 2rem; }
+    .about, .gm-section, .contact { grid-template-columns: 1fr; gap: 3rem; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .services-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">WING21 <span>STARS</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#leadership">Leadership</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="star-field"></div>
+
+  <p class="hero-tag">Established & Trusted</p>
+  <div class="hero-ornament"></div>
+
+  <h1 class="hero-title">WING21 <span class="star">★</span> STARS</h1>
+  <p class="hero-subtitle">Where Every Journey Becomes a Story</p>
+
+  <div class="hero-divider">
+    <span class="line"></span>
+    <span class="diamond"></span>
+    <span class="line"></span>
+  </div>
+
+  <div class="hero-services">
+    <span>Inbound Tours</span>
+    <span class="sep">✦</span>
+    <span>Outbound Tours</span>
+    <span class="sep">✦</span>
+    <span>Tourism Guidance</span>
+    <span class="sep">✦</span>
+    <span>Marketing Management</span>
+  </div>
+
+  <div class="hero-cta">
+    <a href="#services" class="btn-primary">Explore Services</a>
+    <a href="#leadership" class="btn-outline">Meet Our Team</a>
+  </div>
+
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-text reveal">
+    <p class="section-label">Who We Are</p>
+    <h2 class="section-title">Crafting <em>extraordinary</em> travel experiences</h2>
+    <p>WING21 STARS is a premier full-service tour operator dedicated to creating unforgettable journeys. Whether welcoming international travelers to discover our homeland or guiding our clients to the world's most spectacular destinations, we bring unmatched expertise and personal care to every itinerary.</p>
+    <p>With a deep commitment to excellence, cultural sensitivity, and seamless logistics, we are the trusted partner for travelers and businesses alike.</p>
+    <a href="#contact" class="btn-outline" style="margin-top:1.5rem; display:inline-block;">Get In Touch</a>
+  </div>
+  <div class="about-stats reveal">
+    <div class="stat-card">
+      <div class="stat-number">500<span style="font-size:1.5rem">+</span></div>
+      <div class="stat-desc">Tours Operated</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">40<span style="font-size:1.5rem">+</span></div>
+      <div class="stat-desc">Destinations Covered</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">10<span style="font-size:1.5rem">K+</span></div>
+      <div class="stat-desc">Happy Travelers</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">15<span style="font-size:1.5rem">+</span></div>
+      <div class="stat-desc">Years of Excellence</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header reveal">
+    <p class="section-label">What We Do</p>
+    <h2 class="section-title">Our <em>Core Services</em></h2>
+  </div>
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <span class="service-number">01</span>
+      <div class="service-icon">✈</div>
+      <p class="service-name">Service 01</p>
+      <h3 class="service-title">Inbound Tour Operator</h3>
+      <p class="service-desc">We welcome international travelers and design immersive, culturally rich experiences within the country — from guided city tours to bespoke wilderness adventures.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-number">02</span>
+      <div class="service-icon">🌍</div>
+      <p class="service-name">Service 02</p>
+      <h3 class="service-title">Outbound Tour Operator</h3>
+      <p class="service-desc">We curate and manage seamless international travel packages for our clients, covering flights, accommodations, visas, and on-the-ground experiences worldwide.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-number">03</span>
+      <div class="service-icon">🧭</div>
+      <p class="service-name">Service 03</p>
+      <h3 class="service-title">Tourism Guidance Services</h3>
+      <p class="service-desc">Our expert guides provide personalized, knowledgeable, and safe guidance — transforming every destination into a living, breathing story for the traveler.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-number">04</span>
+      <div class="service-icon">📊</div>
+      <p class="service-name">Service 04</p>
+      <h3 class="service-title">Marketing Management</h3>
+      <p class="service-desc">We partner with hotels, resorts, and tourism boards to craft compelling marketing strategies that elevate visibility and drive meaningful engagement.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GENERAL MANAGER -->
+<section class="gm-section" id="leadership">
+  <div class="gm-photo-frame reveal">
+    <div class="gm-photo-outer">
+      <div class="gm-photo-bg"></div>
+      <div class="gm-photo-placeholder">
+        <div class="gm-avatar-ring">
+          <span class="gm-avatar-initials">GM</span>
+        </div>
+        <p class="gm-photo-caption">General Manager Photo</p>
+      </div>
+      <div class="gm-deco-line"></div>
+      <div class="gm-deco-line-br"></div>
+    </div>
+  </div>
+
+  <div class="gm-content reveal">
+    <p class="gm-role">General Manager · WING21 STARS</p>
+    <h2 class="gm-name gm-name-placeholder">[Your Name Here]</h2>
+    <div class="gm-title-line"></div>
+
+    <p class="gm-bio">
+      With a distinguished career spanning the global tourism industry, our General Manager brings visionary leadership and an unwavering passion for connecting people with the world's most extraordinary places.
+    </p>
+    <p class="gm-bio gm-bio-placeholder">
+      ✦ Replace this section with a personal biography — your background, expertise, achievements, and the vision that drives WING21 STARS forward.
+    </p>
+
+    <blockquote class="gm-quote">
+      "Travel is not just movement — it is transformation. At WING21 STARS, we don't just plan trips; we craft the moments that stay with you for a lifetime."
+    </blockquote>
+
+    <div class="gm-credentials">
+      <div class="gm-cred">
+        <span class="gm-cred-label">Experience</span>
+        <span class="gm-cred-value">15+ Years in Tourism</span>
+      </div>
+      <div class="gm-cred">
+        <span class="gm-cred-label">Specialization</span>
+        <span class="gm-cred-value">Inbound & Outbound Operations</span>
+      </div>
+      <div class="gm-cred">
+        <span class="gm-cred-label">Languages</span>
+        <span class="gm-cred-value">English · Arabic · French</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-info reveal">
+    <p class="section-label">Reach Out</p>
+    <h2 class="section-title">Let's Plan Your <em>Next Journey</em></h2>
+    <p>Whether you're an individual traveler with a dream destination, a corporate client seeking event travel, or a partner looking to collaborate — our team is ready to assist you with warmth and professionalism.</p>
+    <div class="contact-details">
+      <div class="contact-item">
+        <span class="contact-item-label">Email</span>
+        <span class="contact-item-value">info@wing21stars.com</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-item-label">Phone</span>
+        <span class="contact-item-value">+[Your Number Here]</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-item-label">Office</span>
+        <span class="contact-item-value">[Your Office Address Here]</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-item-label">Hours</span>
+        <span class="contact-item-value">Mon – Fri: 9:00 AM – 6:00 PM<br>Sat: 9:00 AM – 2:00 PM</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <form class="contact-form" onsubmit="return false;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.2rem;">
+        <div class="form-group">
+          <label class="form-label">First Name</label>
+          <input type="text" class="form-input" placeholder="John">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Last Name</label>
+          <input type="text" class="form-input" placeholder="Smith">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-input" placeholder="john@example.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Service Interest</label>
+        <select class="form-input" style="appearance:none; cursor:pointer;">
+          <option value="">Select a service...</option>
+          <option>Inbound Tour</option>
+          <option>Outbound Tour</option>
+          <option>Tourism Guidance</option>
+          <option>Marketing Management</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Message</label>
+        <textarea class="form-textarea" placeholder="Tell us about your travel plans..."></textarea>
+      </div>
+      <button type="submit" class="btn-primary" style="cursor:pointer; font-family:'Josefin Sans',sans-serif;">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">WING21 <span>★</span> STARS</div>
+    <div style="font-size:0.6rem; letter-spacing:0.1em; color:var(--text-mid); margin-top:0.3rem;">Inbound · Outbound · Guidance · Marketing</div>
+  </div>
+  <div class="footer-copy">© 2025 WING21 STARS. All Rights Reserved.</div>
+</footer>
+
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

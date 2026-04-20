@@ -30,23 +30,17 @@
     overflow-x: hidden;
   }
 
-  /* ── NAV ── */
+  /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 1.4rem 4rem;
+    padding: 1rem 4rem;
     background: linear-gradient(to bottom, rgba(10,22,40,0.98), rgba(10,22,40,0));
     transition: background 0.4s;
   }
   nav.scrolled { background: rgba(10,22,40,0.97); border-bottom: 1px solid rgba(201,168,76,0.2); }
-
-  .nav-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem; font-weight: 600; letter-spacing: 0.15em;
-    color: var(--gold); text-decoration: none;
-  }
-  .nav-logo span { color: var(--cream); }
-
+  .nav-logo { display: flex; align-items: center; text-decoration: none; }
+  .nav-logo svg { display: block; }
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
   .nav-links a {
     font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
@@ -54,15 +48,13 @@
   }
   .nav-links a:hover { color: var(--gold); }
 
-  /* ── HERO ── */
+  /* HERO */
   .hero {
     min-height: 100vh;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
-    text-align: center;
-    position: relative; overflow: hidden;
+    text-align: center; position: relative; overflow: hidden;
     padding: 8rem 2rem 4rem;
   }
-
   .hero-bg {
     position: absolute; inset: 0; z-index: 0;
     background:
@@ -70,7 +62,6 @@
       radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,168,76,0.08) 0%, transparent 60%),
       linear-gradient(160deg, #0a1628 0%, #0e1f3a 40%, #0a1628 100%);
   }
-
   .star-field {
     position: absolute; inset: 0; z-index: 1;
     background-image:
@@ -87,36 +78,17 @@
       radial-gradient(1px 1px at 78% 88%, rgba(255,255,255,0.5) 0%, transparent 100%),
       radial-gradient(1px 1px at 5% 45%, rgba(255,255,255,0.3) 0%, transparent 100%);
   }
-
-  .hero-ornament {
-    position: relative; z-index: 2;
-    width: 60px; height: 1px; background: var(--gold);
-    margin: 0 auto 2rem; opacity: 0.7;
-  }
-  .hero-ornament::before, .hero-ornament::after {
-    content: ''; position: absolute; top: 50%; transform: translateY(-50%);
-    width: 5px; height: 5px; border: 1px solid var(--gold); border-radius: 50%; background: var(--gold);
-  }
-  .hero-ornament::before { left: -8px; }
-  .hero-ornament::after { right: -8px; }
-
   .hero-tag {
     position: relative; z-index: 2;
     font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 1.2rem; opacity: 0.9;
+    color: var(--gold); margin-bottom: 1.5rem; opacity: 0.9;
+    animation: fadeUp 1s ease both;
   }
-
-  .hero-title {
+  .hero-logo-wrap {
     position: relative; z-index: 2;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(3.5rem, 8vw, 7rem);
-    font-weight: 300; line-height: 1.05; letter-spacing: 0.06em;
-    color: var(--white);
-    margin-bottom: 0.3rem;
-    animation: fadeUp 1.2s ease both;
+    width: min(420px, 85vw); margin: 0 auto 0.5rem;
+    animation: fadeUp 1.2s 0.1s ease both;
   }
-  .hero-title .star { color: var(--gold); font-weight: 600; }
-
   .hero-subtitle {
     position: relative; z-index: 2;
     font-family: 'Cormorant Garamond', serif;
@@ -124,37 +96,28 @@
     font-weight: 300; font-style: italic;
     color: var(--gold-light); letter-spacing: 0.04em;
     margin-bottom: 2.5rem;
-    animation: fadeUp 1.2s 0.2s ease both;
+    animation: fadeUp 1.2s 0.25s ease both;
   }
-
   .hero-divider {
     position: relative; z-index: 2;
     display: flex; align-items: center; gap: 1rem;
     margin: 0 auto 3rem; width: 320px;
-    animation: fadeUp 1.2s 0.3s ease both;
+    animation: fadeUp 1.2s 0.35s ease both;
   }
   .hero-divider .line { flex: 1; height: 1px; background: rgba(201,168,76,0.4); }
-  .hero-divider .diamond {
-    width: 8px; height: 8px; border: 1px solid var(--gold);
-    transform: rotate(45deg); opacity: 0.8;
-  }
-
+  .hero-divider .diamond { width: 8px; height: 8px; border: 1px solid var(--gold); transform: rotate(45deg); opacity: 0.8; }
   .hero-services {
     position: relative; z-index: 2;
     display: flex; flex-wrap: wrap; gap: 1rem 2.5rem; justify-content: center;
     margin-bottom: 3.5rem;
-    animation: fadeUp 1.2s 0.4s ease both;
+    animation: fadeUp 1.2s 0.45s ease both;
   }
-  .hero-services span {
-    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--text-light);
-  }
+  .hero-services span { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); }
   .hero-services .sep { color: var(--gold); opacity: 0.5; }
-
   .hero-cta {
     position: relative; z-index: 2;
     display: inline-flex; gap: 1.2rem;
-    animation: fadeUp 1.2s 0.5s ease both;
+    animation: fadeUp 1.2s 0.55s ease both;
   }
   .btn-primary {
     padding: 0.85rem 2.5rem;
@@ -165,7 +128,6 @@
     transition: background 0.3s, transform 0.2s;
   }
   .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
-
   .btn-outline {
     padding: 0.85rem 2.5rem;
     background: transparent; color: var(--gold);
@@ -175,23 +137,21 @@
     transition: border-color 0.3s, color 0.3s, transform 0.2s;
   }
   .btn-outline:hover { border-color: var(--gold); color: var(--gold-light); transform: translateY(-2px); }
-
   .scroll-indicator {
     position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
     z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
   }
   .scroll-indicator span { font-size: 0.6rem; letter-spacing: 0.2em; color: var(--text-mid); text-transform: uppercase; }
   .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent); animation: scrollDown 2s infinite; }
-  @keyframes scrollDown { 0%, 100% { opacity: 0; transform: scaleY(0); transform-origin: top; } 50% { opacity: 1; transform: scaleY(1); } }
+  @keyframes scrollDown { 0%,100%{opacity:0;transform:scaleY(0);transform-origin:top}50%{opacity:1;transform:scaleY(1)} }
 
-  /* ── SECTIONS COMMON ── */
+  /* SECTIONS */
   section { padding: 6rem 4rem; }
   .section-label {
     font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
     color: var(--gold); display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;
   }
   .section-label::before { content: ''; width: 30px; height: 1px; background: var(--gold); }
-
   .section-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; line-height: 1.2;
@@ -199,229 +159,87 @@
   }
   .section-title em { font-style: italic; color: var(--gold-light); }
 
-  /* ── ABOUT ── */
-  .about {
-    background: var(--navy-mid);
-    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
-  }
-  .about-text p {
-    font-size: 0.9rem; line-height: 1.9; color: var(--text-light);
-    margin-bottom: 1.2rem;
-  }
-  .about-stats {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
-  }
-  .stat-card {
-    border-left: 2px solid var(--gold); padding-left: 1.5rem;
-  }
-  .stat-number {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 3rem; font-weight: 300; color: var(--gold); line-height: 1;
-  }
+  /* ABOUT */
+  .about { background: var(--navy-mid); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .about-text p { font-size: 0.9rem; line-height: 1.9; color: var(--text-light); margin-bottom: 1.2rem; }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .stat-card { border-left: 2px solid var(--gold); padding-left: 1.5rem; }
+  .stat-number { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: var(--gold); line-height: 1; }
   .stat-desc { font-size: 0.65rem; letter-spacing: 0.1em; color: var(--text-mid); text-transform: uppercase; margin-top: 0.4rem; }
 
-  /* ── SERVICES ── */
+  /* SERVICES */
   .services { background: var(--navy); }
   .services-header { text-align: center; margin-bottom: 4rem; }
   .services-header .section-label { justify-content: center; }
   .services-header .section-label::before { display: none; }
-
-  .services-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5px;
-    background: rgba(201,168,76,0.15);
-  }
-  .service-card {
-    background: var(--navy); padding: 3rem 2rem;
-    position: relative; overflow: hidden;
-    transition: background 0.4s;
-  }
-  .service-card::before {
-    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-    height: 2px; background: var(--gold);
-    transform: scaleX(0); transition: transform 0.4s; transform-origin: left;
-  }
+  .services-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5px; background: rgba(201,168,76,0.15); }
+  .service-card { background: var(--navy); padding: 3rem 2rem; position: relative; overflow: hidden; transition: background 0.4s; }
+  .service-card::before { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; background:var(--gold); transform:scaleX(0); transition:transform 0.4s; transform-origin:left; }
   .service-card:hover { background: var(--navy-mid); }
   .service-card:hover::before { transform: scaleX(1); }
+  .service-icon { font-size: 2rem; margin-bottom: 1.5rem; display: block; color: var(--gold); opacity: 0.7; }
+  .service-number { font-family:'Cormorant Garamond',serif; font-size:3.5rem; font-weight:300; color:rgba(201,168,76,0.1); position:absolute; top:1.5rem; right:1.5rem; line-height:1; }
+  .service-name { font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:0.8rem; }
+  .service-title { font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:400; color:var(--white); line-height:1.3; margin-bottom:1rem; }
+  .service-desc { font-size:0.82rem; line-height:1.8; color:var(--text-light); }
 
-  .service-icon {
-    font-size: 2rem; margin-bottom: 1.5rem;
-    display: block; color: var(--gold); opacity: 0.7;
-  }
-  .service-number {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 3.5rem; font-weight: 300; color: rgba(201,168,76,0.1);
-    position: absolute; top: 1.5rem; right: 1.5rem; line-height: 1;
-  }
-  .service-name {
-    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 0.8rem;
-  }
-  .service-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem; font-weight: 400; color: var(--white); line-height: 1.3; margin-bottom: 1rem;
-  }
-  .service-desc {
-    font-size: 0.82rem; line-height: 1.8; color: var(--text-light);
-  }
+  /* GM SECTION */
+  .gm-section { background: var(--navy-mid); display: grid; grid-template-columns: 1fr 1.4fr; gap: 6rem; align-items: center; }
+  .gm-photo-frame { position: relative; }
+  .gm-photo-outer { position: relative; width: 100%; padding-bottom: 120%; }
+  .gm-photo-bg { position:absolute; inset:0; background:linear-gradient(135deg,var(--navy-light) 0%,var(--navy) 100%); border:1px solid rgba(201,168,76,0.3); }
+  .gm-photo-placeholder { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem; }
+  .gm-avatar-ring { width:120px; height:120px; border-radius:50%; border:2px solid rgba(201,168,76,0.4); display:flex; align-items:center; justify-content:center; position:relative; }
+  .gm-avatar-ring::before { content:''; position:absolute; inset:6px; border-radius:50%; border:1px solid rgba(201,168,76,0.2); }
+  .gm-avatar-initials { font-family:'Cormorant Garamond',serif; font-size:2.5rem; font-weight:300; color:var(--gold); letter-spacing:0.1em; }
+  .gm-photo-caption { font-size:0.6rem; letter-spacing:0.2em; color:var(--text-mid); text-transform:uppercase; text-align:center; }
+  .gm-deco-line { position:absolute; top:-20px; left:-20px; width:60px; height:60px; border-top:1px solid rgba(201,168,76,0.4); border-left:1px solid rgba(201,168,76,0.4); }
+  .gm-deco-line-br { position:absolute; bottom:-20px; right:-20px; width:60px; height:60px; border-bottom:1px solid rgba(201,168,76,0.4); border-right:1px solid rgba(201,168,76,0.4); }
+  .gm-role { font-size:0.65rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold); margin-bottom:0.5rem; }
+  .gm-name { font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,3.5vw,3rem); font-weight:300; color:var(--white); line-height:1.1; margin-bottom:0.4rem; }
+  .gm-title-line { width:50px; height:1px; background:var(--gold); margin:1.2rem 0; }
+  .gm-bio { font-size:0.88rem; line-height:1.9; color:var(--text-light); margin-bottom:1.2rem; }
+  .gm-quote { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-style:italic; font-weight:300; color:var(--gold-light); line-height:1.6; margin:2rem 0; padding-left:1.5rem; border-left:2px solid var(--gold); }
+  .gm-credentials { display:flex; gap:2rem; flex-wrap:wrap; margin-top:2rem; }
+  .gm-cred { display:flex; flex-direction:column; gap:0.2rem; }
+  .gm-cred-label { font-size:0.6rem; letter-spacing:0.15em; color:var(--text-mid); text-transform:uppercase; }
+  .gm-cred-value { font-size:0.82rem; color:var(--cream); }
 
-  /* ── GM SECTION ── */
-  .gm-section {
-    background: var(--navy-mid);
-    display: grid; grid-template-columns: 1fr 1.4fr; gap: 6rem; align-items: center;
-  }
+  /* CONTACT */
+  .contact { background:var(--navy); display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start; }
+  .contact-info p { font-size:0.85rem; line-height:1.9; color:var(--text-light); margin-bottom:2rem; }
+  .contact-details { display:flex; flex-direction:column; gap:1rem; }
+  .contact-item { display:flex; gap:1rem; align-items:flex-start; }
+  .contact-item-label { font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); min-width:70px; padding-top:0.15rem; }
+  .contact-item-value { font-size:0.85rem; color:var(--text-light); line-height:1.6; }
+  .contact-form { display:flex; flex-direction:column; gap:1.2rem; }
+  .form-group { display:flex; flex-direction:column; gap:0.4rem; }
+  .form-label { font-size:0.62rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-mid); }
+  .form-input, .form-textarea { background:rgba(255,255,255,0.04); border:1px solid rgba(201,168,76,0.2); padding:0.85rem 1rem; color:var(--cream); font-family:'Josefin Sans',sans-serif; font-size:0.85rem; outline:none; transition:border-color 0.3s; width:100%; }
+  .form-input:focus, .form-textarea:focus { border-color:rgba(201,168,76,0.6); }
+  .form-textarea { resize:vertical; min-height:120px; }
 
-  .gm-photo-frame {
-    position: relative;
-  }
-  .gm-photo-outer {
-    position: relative;
-    width: 100%; padding-bottom: 120%;
-  }
-  .gm-photo-bg {
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy) 100%);
-    border: 1px solid rgba(201,168,76,0.3);
-  }
-  .gm-photo-placeholder {
-    position: absolute; inset: 0;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    gap: 1rem;
-  }
-  .gm-avatar-ring {
-    width: 120px; height: 120px; border-radius: 50%;
-    border: 2px solid rgba(201,168,76,0.4);
-    display: flex; align-items: center; justify-content: center;
-    position: relative;
-  }
-  .gm-avatar-ring::before {
-    content: ''; position: absolute; inset: 6px;
-    border-radius: 50%; border: 1px solid rgba(201,168,76,0.2);
-  }
-  .gm-avatar-initials {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.5rem; font-weight: 300; color: var(--gold); letter-spacing: 0.1em;
-  }
-  .gm-photo-caption {
-    font-size: 0.6rem; letter-spacing: 0.2em; color: var(--text-mid); text-transform: uppercase;
-    text-align: center;
-  }
-  .gm-deco-line {
-    position: absolute;
-    top: -20px; left: -20px; width: 60px; height: 60px;
-    border-top: 1px solid rgba(201,168,76,0.4);
-    border-left: 1px solid rgba(201,168,76,0.4);
-  }
-  .gm-deco-line-br {
-    position: absolute;
-    bottom: -20px; right: -20px; width: 60px; height: 60px;
-    border-bottom: 1px solid rgba(201,168,76,0.4);
-    border-right: 1px solid rgba(201,168,76,0.4);
-  }
+  /* FOOTER */
+  footer { background:#060f1c; padding:3rem 4rem; display:flex; align-items:center; justify-content:space-between; border-top:1px solid rgba(201,168,76,0.1); }
+  .footer-copy { font-size:0.65rem; letter-spacing:0.08em; color:var(--text-mid); }
 
-  .gm-content {}
-  .gm-role {
-    font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 0.5rem;
-  }
-  .gm-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300;
-    color: var(--white); line-height: 1.1; margin-bottom: 0.4rem;
-  }
-  .gm-name-placeholder {
-    font-style: italic; color: var(--text-mid);
-  }
-  .gm-title-line {
-    width: 50px; height: 1px; background: var(--gold); margin: 1.2rem 0;
-  }
-  .gm-bio {
-    font-size: 0.88rem; line-height: 1.9; color: var(--text-light); margin-bottom: 1.2rem;
-  }
-  .gm-bio-placeholder {
-    font-style: italic; color: var(--text-mid); font-size: 0.82rem;
-    border-left: 2px solid rgba(201,168,76,0.3); padding-left: 1.2rem;
-  }
-  .gm-quote {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem; font-style: italic; font-weight: 300;
-    color: var(--gold-light); line-height: 1.6; margin: 2rem 0;
-    padding-left: 1.5rem;
-    border-left: 2px solid var(--gold);
-  }
-  .gm-credentials {
-    display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 2rem;
-  }
-  .gm-cred {
-    display: flex; flex-direction: column; gap: 0.2rem;
-  }
-  .gm-cred-label { font-size: 0.6rem; letter-spacing: 0.15em; color: var(--text-mid); text-transform: uppercase; }
-  .gm-cred-value { font-size: 0.82rem; color: var(--cream); }
+  /* ANIMATIONS */
+  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+  .reveal { opacity:0; transform:translateY(30px); transition:opacity 0.8s ease,transform 0.8s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
 
-  /* ── CONTACT ── */
-  .contact {
-    background: var(--navy);
-    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;
+  /* RESPONSIVE */
+  @media (max-width:900px) {
+    nav { padding:1rem 1.5rem; }
+    .nav-links { display:none; }
+    section { padding:4rem 2rem; }
+    .about,.gm-section,.contact { grid-template-columns:1fr; gap:3rem; }
+    .services-grid { grid-template-columns:1fr 1fr; }
   }
-  .contact-info p {
-    font-size: 0.85rem; line-height: 1.9; color: var(--text-light); margin-bottom: 2rem;
-  }
-  .contact-details { display: flex; flex-direction: column; gap: 1rem; }
-  .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
-  .contact-item-label {
-    font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--gold); min-width: 70px; padding-top: 0.15rem;
-  }
-  .contact-item-value { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
-
-  .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
-  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-  .form-label { font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-mid); }
-  .form-input, .form-textarea {
-    background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.2);
-    padding: 0.85rem 1rem; color: var(--cream); font-family: 'Josefin Sans', sans-serif;
-    font-size: 0.85rem; outline: none; transition: border-color 0.3s;
-    width: 100%;
-  }
-  .form-input:focus, .form-textarea:focus { border-color: rgba(201,168,76,0.6); }
-  .form-textarea { resize: vertical; min-height: 120px; }
-
-  /* ── FOOTER ── */
-  footer {
-    background: #060f1c;
-    padding: 3rem 4rem;
-    display: flex; align-items: center; justify-content: space-between;
-    border-top: 1px solid rgba(201,168,76,0.1);
-  }
-  .footer-brand {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.3rem; color: var(--gold); letter-spacing: 0.15em;
-  }
-  .footer-brand span { color: var(--text-mid); }
-  .footer-copy { font-size: 0.65rem; letter-spacing: 0.08em; color: var(--text-mid); }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .reveal {
-    opacity: 0; transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 900px) {
-    nav { padding: 1.2rem 2rem; }
-    .nav-links { display: none; }
-    section { padding: 4rem 2rem; }
-    .about, .gm-section, .contact { grid-template-columns: 1fr; gap: 3rem; }
-    .services-grid { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 600px) {
-    .services-grid { grid-template-columns: 1fr; }
-    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  @media (max-width:600px) {
+    .services-grid { grid-template-columns:1fr; }
+    footer { flex-direction:column; gap:1.5rem; text-align:center; }
+    .hero-divider { width:240px; }
   }
 </style>
 </head>
@@ -429,7 +247,23 @@
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="#" class="nav-logo">WING21 <span>STARS</span></a>
+  <a href="#" class="nav-logo">
+    <svg width="158" height="42" viewBox="0 0 158 42" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="27" cy="21" r="18" fill="none" stroke="#c9a84c" stroke-width="0.8"/>
+      <circle cx="27" cy="21" r="14" fill="#0d1c38"/>
+      <path d="M 9,21 L 2,18 L 3,20.5 L 9,23 Z" fill="#c9a84c" opacity="0.95"/>
+      <path d="M 9,20 L 4,15.5 L 5,17.5 L 9,22 Z" fill="#c9a84c" opacity="0.68"/>
+      <path d="M 9,19 L 6,13.5 L 7,15.5 L 9,20 Z" fill="#c9a84c" opacity="0.44"/>
+      <path d="M 45,21 L 52,18 L 51,20.5 L 45,23 Z" fill="#c9a84c" opacity="0.95"/>
+      <path d="M 45,20 L 50,15.5 L 49,17.5 L 45,22 Z" fill="#c9a84c" opacity="0.68"/>
+      <path d="M 45,19 L 48,13.5 L 47,15.5 L 45,20 Z" fill="#c9a84c" opacity="0.44"/>
+      <path d="M 27,11 L 29.2,17 L 35.5,17.3 L 30.5,21 L 32.2,27 L 27,23.5 L 21.8,27 L 23.5,21 L 18.5,17.3 L 24.8,17 Z" fill="#c9a84c"/>
+      <line x1="19" y1="29" x2="35" y2="29" stroke="#c9a84c" stroke-width="0.5" stroke-opacity="0.42"/>
+      <text x="27" y="37.5" font-family="Georgia,serif" font-size="6.5" fill="#c9a84c" text-anchor="middle" letter-spacing="1">21</text>
+      <text x="58" y="18" font-family="'Cormorant Garamond',Georgia,serif" font-size="16" fill="#e2c77a" letter-spacing="2">WING21</text>
+      <text x="59" y="33" font-family="'Josefin Sans','Gill Sans',Arial,sans-serif" font-size="8.5" fill="#d4c9b0" letter-spacing="4" font-weight="300">STARS</text>
+    </svg>
+  </a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
@@ -443,10 +277,52 @@
   <div class="hero-bg"></div>
   <div class="star-field"></div>
 
-  <p class="hero-tag">Established & Trusted</p>
-  <div class="hero-ornament"></div>
+  <p class="hero-tag">Established &amp; Trusted</p>
 
-  <h1 class="hero-title">WING21 <span class="star">★</span> STARS</h1>
+  <div class="hero-logo-wrap">
+    <svg width="100%" viewBox="0 0 680 450" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="82" cy="48" r="1.2" fill="#fff" opacity="0.28"/>
+      <circle cx="210" cy="28" r="0.9" fill="#c9a84c" opacity="0.38"/>
+      <circle cx="520" cy="22" r="1.1" fill="#fff" opacity="0.22"/>
+      <circle cx="608" cy="68" r="0.8" fill="#fff" opacity="0.22"/>
+      <circle cx="48" cy="118" r="1" fill="#c9a84c" opacity="0.2"/>
+      <circle cx="628" cy="135" r="1" fill="#fff" opacity="0.26"/>
+      <circle cx="442" cy="42" r="1" fill="#fff" opacity="0.22"/>
+      <circle cx="380" cy="18" r="0.7" fill="#fff" opacity="0.28"/>
+      <circle cx="340" cy="175" r="95" fill="none" stroke="#c9a84c" stroke-width="0.9"/>
+      <circle cx="340" cy="175" r="88" fill="none" stroke="#c9a84c" stroke-width="0.4" stroke-opacity="0.28"/>
+      <line x1="340" y1="82" x2="340" y2="74" stroke="#c9a84c" stroke-width="1.8"/>
+      <line x1="340" y1="268" x2="340" y2="276" stroke="#c9a84c" stroke-width="1.8"/>
+      <line x1="407" y1="108" x2="413" y2="102" stroke="#c9a84c" stroke-width="0.9" stroke-opacity="0.55"/>
+      <line x1="273" y1="108" x2="267" y2="102" stroke="#c9a84c" stroke-width="0.9" stroke-opacity="0.55"/>
+      <line x1="407" y1="242" x2="413" y2="248" stroke="#c9a84c" stroke-width="0.9" stroke-opacity="0.55"/>
+      <line x1="273" y1="242" x2="267" y2="248" stroke="#c9a84c" stroke-width="0.9" stroke-opacity="0.55"/>
+      <path d="M 245,175 L 133,145 L 139,162 L 245,185 Z" fill="#c9a84c" opacity="0.95"/>
+      <path d="M 245,172 L 155,130 L 163,147 L 245,181 Z" fill="#c9a84c" opacity="0.72"/>
+      <path d="M 245,169 L 185,118 L 193,134 L 245,176 Z" fill="#c9a84c" opacity="0.50"/>
+      <line x1="245" y1="176" x2="136" y2="151" stroke="#0a1628" stroke-width="0.7" opacity="0.7"/>
+      <line x1="245" y1="173" x2="158" y2="136" stroke="#0a1628" stroke-width="0.7" opacity="0.7"/>
+      <path d="M 435,175 L 547,145 L 541,162 L 435,185 Z" fill="#c9a84c" opacity="0.95"/>
+      <path d="M 435,172 L 525,130 L 517,147 L 435,181 Z" fill="#c9a84c" opacity="0.72"/>
+      <path d="M 435,169 L 495,118 L 487,134 L 435,176 Z" fill="#c9a84c" opacity="0.50"/>
+      <line x1="435" y1="176" x2="544" y2="151" stroke="#0a1628" stroke-width="0.7" opacity="0.7"/>
+      <line x1="435" y1="173" x2="522" y2="136" stroke="#0a1628" stroke-width="0.7" opacity="0.7"/>
+      <circle cx="340" cy="175" r="82" fill="#0d1c38"/>
+      <path d="M 340,133 L 351,160 L 380,162 L 357,181 L 365,209 L 340,193 L 315,209 L 323,181 L 300,162 L 329,160 Z" fill="#c9a84c"/>
+      <line x1="276" y1="218" x2="404" y2="218" stroke="#c9a84c" stroke-width="0.6" stroke-opacity="0.45"/>
+      <text x="340" y="238" font-family="'Cormorant Garamond',Georgia,serif" font-size="20" fill="#c9a84c" text-anchor="middle" letter-spacing="5">21</text>
+      <text x="340" y="308" font-family="'Cormorant Garamond',Georgia,serif" font-size="52" font-weight="300" fill="#e2c77a" text-anchor="middle" letter-spacing="7">WING21</text>
+      <line x1="250" y1="324" x2="316" y2="324" stroke="#c9a84c" stroke-width="0.6" stroke-opacity="0.65"/>
+      <rect x="337" y="320" width="6" height="6" fill="none" stroke="#c9a84c" stroke-width="0.8" transform="rotate(45 340 323)"/>
+      <line x1="364" y1="324" x2="430" y2="324" stroke="#c9a84c" stroke-width="0.6" stroke-opacity="0.65"/>
+      <text x="340" y="355" font-family="'Josefin Sans','Gill Sans',Arial,sans-serif" font-size="19" font-weight="200" fill="#d4c9b0" text-anchor="middle" letter-spacing="13">STARS</text>
+      <text x="340" y="392" font-family="'Josefin Sans','Gill Sans',Arial,sans-serif" font-size="11" font-weight="300" fill="#8a7f6a" text-anchor="middle" letter-spacing="2.2">INBOUND  ·  OUTBOUND  ·  TOURISM GUIDANCE  ·  MARKETING</text>
+      <line x1="308" y1="415" x2="328" y2="415" stroke="#c9a84c" stroke-width="0.5" stroke-opacity="0.38"/>
+      <circle cx="340" cy="415" r="1.8" fill="#c9a84c" opacity="0.45"/>
+      <line x1="352" y1="415" x2="372" y2="415" stroke="#c9a84c" stroke-width="0.5" stroke-opacity="0.38"/>
+    </svg>
+  </div>
+
   <p class="hero-subtitle">Where Every Journey Becomes a Story</p>
 
   <div class="hero-divider">
@@ -483,7 +359,7 @@
     <h2 class="section-title">Crafting <em>extraordinary</em> travel experiences</h2>
     <p>WING21 STARS is a premier full-service tour operator dedicated to creating unforgettable journeys. Whether welcoming international travelers to discover our homeland or guiding our clients to the world's most spectacular destinations, we bring unmatched expertise and personal care to every itinerary.</p>
     <p>With a deep commitment to excellence, cultural sensitivity, and seamless logistics, we are the trusted partner for travelers and businesses alike.</p>
-    <a href="#contact" class="btn-outline" style="margin-top:1.5rem; display:inline-block;">Get In Touch</a>
+    <a href="#contact" class="btn-outline" style="margin-top:1.5rem;display:inline-block;">Get In Touch</a>
   </div>
   <div class="about-stats reveal">
     <div class="stat-card">
@@ -550,9 +426,9 @@
       <div class="gm-photo-bg"></div>
       <div class="gm-photo-placeholder">
         <div class="gm-avatar-ring">
-          <span class="gm-avatar-initials">GM</span>
+          <span class="gm-avatar-initials">BN</span>
         </div>
-        <p class="gm-photo-caption">General Manager Photo</p>
+        <p class="gm-photo-caption">General Manager</p>
       </div>
       <div class="gm-deco-line"></div>
       <div class="gm-deco-line-br"></div>
@@ -560,16 +436,15 @@
   </div>
 
   <div class="gm-content reveal">
-    <p class="gm-role">General Manager · WING21 STARS</p>
-    <h2 class="gm-name gm-name-placeholder">Boghos Nourian</h2>
+    <p class="gm-role">General Manager &amp; Founder · WING21 STARS</p>
+    <h2 class="gm-name">Boghos Nourian</h2>
     <div class="gm-title-line"></div>
 
     <p class="gm-bio">
-      With a distinguished career spanning the global tourism industry, our General Manager brings visionary leadership and an unwavering passion for connecting people with the world's most extraordinary places.
+      Mr. Boghos Nourian is the founder and General Manager of WING21 STARS, bringing over a decade of expertise in inbound and outbound tourism, travel operations, and destination marketing. Known for a hands-on approach and an eye for detail, Mr. Nourian has guided thousands of travelers across the globe — crafting experiences that go far beyond the ordinary.
     </p>
-    <p class="gm-bio gm-bio-placeholder">
-     Mr. Boghos Nourian is the founder and General Manager of WING21 STARS, bringing over a decade of expertise in inbound and outbound tourism, travel operations, and destination marketing. Known for a hands-on approach and an eye for detail, [Name] has guided thousands of travelers across the globe — crafting experiences that go far beyond the ordinary.
-A passionate advocate for responsible tourism and authentic cultural exchange, Mr. Nourian built WING21 STARS on three simple pillars: trust, excellence, and transformation.
+    <p class="gm-bio">
+      A passionate advocate for responsible tourism and authentic cultural exchange, Mr. Nourian built WING21 STARS on three simple pillars: <strong style="color:var(--gold-light);font-weight:400;">trust, excellence, and transformation.</strong>
     </p>
 
     <blockquote class="gm-quote">
@@ -579,15 +454,19 @@ A passionate advocate for responsible tourism and authentic cultural exchange, M
     <div class="gm-credentials">
       <div class="gm-cred">
         <span class="gm-cred-label">Experience</span>
-        <span class="gm-cred-value">15+ Years in Tourism</span>
+        <span class="gm-cred-value">10+ Years in Tourism</span>
       </div>
       <div class="gm-cred">
         <span class="gm-cred-label">Specialization</span>
-        <span class="gm-cred-value">Inbound & Outbound Operations</span>
+        <span class="gm-cred-value">Inbound &amp; Outbound Operations</span>
       </div>
       <div class="gm-cred">
         <span class="gm-cred-label">Languages</span>
         <span class="gm-cred-value">English · Arabic · French</span>
+      </div>
+      <div class="gm-cred">
+        <span class="gm-cred-label">Based In</span>
+        <span class="gm-cred-value">Dubai, UAE</span>
       </div>
     </div>
   </div>
@@ -610,7 +489,7 @@ A passionate advocate for responsible tourism and authentic cultural exchange, M
       </div>
       <div class="contact-item">
         <span class="contact-item-label">Office</span>
-        <span class="contact-item-value">IFZA Properties, Dubai Silicon Oasis</span>
+        <span class="contact-item-value">IFZA Properties, Dubai Silicon Oasis<br>Dubai, UAE</span>
       </div>
       <div class="contact-item">
         <span class="contact-item-label">Hours</span>
@@ -621,7 +500,7 @@ A passionate advocate for responsible tourism and authentic cultural exchange, M
 
   <div class="reveal">
     <form class="contact-form" onsubmit="return false;">
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.2rem;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;">
         <div class="form-group">
           <label class="form-label">First Name</label>
           <input type="text" class="form-input" placeholder="John">
@@ -637,7 +516,7 @@ A passionate advocate for responsible tourism and authentic cultural exchange, M
       </div>
       <div class="form-group">
         <label class="form-label">Service Interest</label>
-        <select class="form-input" style="appearance:none; cursor:pointer;">
+        <select class="form-input" style="appearance:none;cursor:pointer;">
           <option value="">Select a service...</option>
           <option>Inbound Tour</option>
           <option>Outbound Tour</option>
@@ -649,7 +528,7 @@ A passionate advocate for responsible tourism and authentic cultural exchange, M
         <label class="form-label">Message</label>
         <textarea class="form-textarea" placeholder="Tell us about your travel plans..."></textarea>
       </div>
-      <button type="submit" class="btn-primary" style="cursor:pointer; font-family:'Josefin Sans',sans-serif;">Send Message</button>
+      <button type="submit" class="btn-primary" style="cursor:pointer;font-family:'Josefin Sans',sans-serif;">Send Message</button>
     </form>
   </div>
 </section>
@@ -657,20 +536,31 @@ A passionate advocate for responsible tourism and authentic cultural exchange, M
 <!-- FOOTER -->
 <footer>
   <div>
-    <div class="footer-brand">WING21 <span>★</span> STARS</div>
-    <div style="font-size:0.6rem; letter-spacing:0.1em; color:var(--text-mid); margin-top:0.3rem;">Inbound · Outbound · Guidance · Marketing</div>
+    <svg width="148" height="38" viewBox="0 0 158 42" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="27" cy="21" r="18" fill="none" stroke="#c9a84c" stroke-width="0.8"/>
+      <circle cx="27" cy="21" r="14" fill="#060f1c"/>
+      <path d="M 9,21 L 2,18 L 3,20.5 L 9,23 Z" fill="#c9a84c" opacity="0.95"/>
+      <path d="M 9,20 L 4,15.5 L 5,17.5 L 9,22 Z" fill="#c9a84c" opacity="0.68"/>
+      <path d="M 9,19 L 6,13.5 L 7,15.5 L 9,20 Z" fill="#c9a84c" opacity="0.44"/>
+      <path d="M 45,21 L 52,18 L 51,20.5 L 45,23 Z" fill="#c9a84c" opacity="0.95"/>
+      <path d="M 45,20 L 50,15.5 L 49,17.5 L 45,22 Z" fill="#c9a84c" opacity="0.68"/>
+      <path d="M 45,19 L 48,13.5 L 47,15.5 L 45,20 Z" fill="#c9a84c" opacity="0.44"/>
+      <path d="M 27,11 L 29.2,17 L 35.5,17.3 L 30.5,21 L 32.2,27 L 27,23.5 L 21.8,27 L 23.5,21 L 18.5,17.3 L 24.8,17 Z" fill="#c9a84c"/>
+      <line x1="19" y1="29" x2="35" y2="29" stroke="#c9a84c" stroke-width="0.5" stroke-opacity="0.42"/>
+      <text x="27" y="37.5" font-family="Georgia,serif" font-size="6.5" fill="#c9a84c" text-anchor="middle" letter-spacing="1">21</text>
+      <text x="58" y="18" font-family="'Cormorant Garamond',Georgia,serif" font-size="16" fill="#e2c77a" letter-spacing="2">WING21</text>
+      <text x="59" y="33" font-family="'Josefin Sans','Gill Sans',Arial,sans-serif" font-size="8.5" fill="#8a7f6a" letter-spacing="4" font-weight="300">STARS</text>
+    </svg>
+    <div style="font-size:0.6rem;letter-spacing:0.1em;color:var(--text-mid);margin-top:0.4rem;padding-left:2px;">Inbound · Outbound · Guidance · Marketing</div>
   </div>
   <div class="footer-copy">© 2025 WING21 STARS. All Rights Reserved.</div>
 </footer>
 
 <script>
-  // Nav scroll effect
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 60);
   });
-
-  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver(entries => {
     entries.forEach((entry, i) => {
